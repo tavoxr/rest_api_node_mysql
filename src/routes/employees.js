@@ -62,5 +62,19 @@ router.put('/:id',(req,res)=>{
 })
 
 
+router.delete('/:id',(req,res)=>{
+    const {id} = req.params
+    mysqlConnection.query('DELETE FROM  employees WHERE id=?',[id],(err,rows,fields)=>{
+
+        if(!err){
+            res.json({Status: 'Employee Deleted'})
+        }else{
+            console.log(err)
+        }
+    })
+
+})
+
+
 
 module.exports =  router
